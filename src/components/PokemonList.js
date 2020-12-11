@@ -1,24 +1,11 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+
+import useFetch from "../hooks/useFetch";
 
 const PokemonList = () => {
-  const [pokemonData, setPokemonData] = useState();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get("https://pokeapi.co/api/v2/pokemon/ditto")
-      .then(({ data }) => {
-        setTimeout(() => {
-          setLoading(false);
-          console.log(data);
-
-          setPokemonData(data);
-        }, 3000);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  const { response, loading } = useFetch(
+    "https://pokeapi.co/api/v2/pokemon/ditto"
+  );
 
   if (loading) {
     return (
@@ -29,9 +16,9 @@ const PokemonList = () => {
   }
 
   return (
-    <div>
-      <p>Pokemon Name: {pokemonData && pokemonData.name}</p>
-      <p>Pokemon Name: {pokemonData?.weight}</p>
+    <div className='App'>
+      <p>Pokemon Name: {response && response.name}</p>
+      <p>Pokemon Name: {response?.weight}</p>
     </div>
   );
 };
