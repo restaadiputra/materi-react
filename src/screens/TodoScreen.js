@@ -1,11 +1,14 @@
-import React from 'react'
+import React from 'react';
+
+import { Wrapper } from 'components/Layout';
+import { TodoInput } from 'components/Todo';
 
 const TodoScreen = () => {
   return (
-    <div>
-      Todo Screens
-    </div>
-  )
-}
+    <Wrapper>
+      <TodoInput />
+    </Wrapper>
+  );
+};
 
-export default TodoScreen
+export default TodoScreen;
